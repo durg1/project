@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+	<title>Project</title>
+	<link rel="stylesheet" href="slick/slick.css">
+	<link rel="stylesheet" href="slick/slick-theme.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+	.projectbox{
+		width:800px;
+		margin: auto;
+		margin-top:60px;
+		position: relative;
+	}
+    .projectbox ul{
+    	width:100%;
+    	margin: 0px;
+    	padding:0px;
+    }	
+    .projectbox li{
+    	width:100%;
+    	list-style-type:none;
+    }
+    .projectbox li img{width:100%;}
+    .projectbox .slick-prev:hover {background: red!important;}
+    .projectbox .slick-next:hover {background: red!important;} 
+    .projectbox .slick-prev:focus{background: red!important;}
+    .projectbox .slick-next:focus{background: red!important;}
+    .projectbox .button-left .fa-angle-left{
+       background: #fff;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 22px;
+    color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top:50%;
+    left:30px;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    visibility:hidden;
+    }
+
+    .projectbox .button-right .fa-angle-right{
+       background: #fff;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 22px;
+    color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top:50%;
+    visibility:hidden;
+    right:5px;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    }
+    .projectbox:hover .fa-angle-left{visibility: visible;} 
+    .projectbox:hover .fa-angle-right{visibility: visible;} 
+
+    @media(max-width:900px){
+    	.projectbox{width:90%;}
+    }
+
+    @media(max-width:480px){
+    	.projectbox .button-right .fa-angle-right{right: -2px;}
+    	.projectbox .button-left .fa-angle-left{left: 21px;}
+    }
+</style>
+</head>
+<body>
+	<main>
+		<div class="projectbox">
+			<ul class="projectslide">
+				<li>
+					<img src="images/first1.png" alt="first">
+				</li>
+				<li>
+					<img src="images/second.png" alt="second">
+				</li>
+				<li>
+					<img src="images/third.png" alt="third">
+				</li>
+				<li>
+					<img src="images/fourth.png" alt="fourth">
+				</li>
+			</ul>
+		</div>
+	</main>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="slick/slick.min.js"></script>
+<script>
+	$('.projectslide').slick({
+  infinite: true,
+  arrows:true,
+  speed: 200,
+  dots:false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  prevArrow:
+      "<div class='button-left'><a href='javascript:void(0);'><i class='fa fa-angle-left' aria-hidden='true' class='slider-left'></i></a></div>",
+    nextArrow:
+      "<div class='button-right'><a href='javascript:void(0);'><i class='fa fa-angle-right' aria-hidden='true' class='slider-right'></i></a></div>"
+});
+</script>
+<script>
+		jQuery('.projectbox .button-left').css('display','none');
+	jQuery('.projectbox').on('afterChange', function(e, s, c, n){
+
+if((s.slideCount - s.options.slidesToShow) == c) {
+console.log('is last');
+jQuery('.projectbox .button-right').css('display', 'none');
+}
+else{
+ jQuery('.projectbox .button-right').css('display', 'block'); 
+}
+
+});
+
+
+jQuery('.projectbox').on('afterChange', function(e, s, c, n){
+ if(c == 0){
+  console.log('is first');
+jQuery('.projectbox .button-left').css('display', 'none');
+} 
+else{
+ jQuery('.projectbox .button-left').css('display', 'block'); 
+}
+
+});
+</script>		
+</html>
